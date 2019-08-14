@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kd56.dao.SubjectsMapper">
+    <select id="queryAllSubject" resultType="map" >
+        SELECT * FROM  subjects
+    </select>
+
+<select id="querySubject" resultType="com.kd56.vo.Subjects">
+      SELECT * FROM  subjects WHERE id =#{id}
+</select>
+
+    <update id="updateSubject" parameterType="com.kd56.vo.Subjects">
+    UPDATE subjects
+    <trim prefix="set" suffixOverrides=",">
+        <if test="totalvotes!=null">totalvotes=#{totalvotes},</if>
+        <if test="viewtimes!=null">viewtimes=#{viewtimes},</if>
+    </trim>
+    WHERE id = #{id}
+</update>
+</mapper>
